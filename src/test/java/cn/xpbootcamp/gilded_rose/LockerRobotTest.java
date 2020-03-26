@@ -14,6 +14,7 @@ public class LockerRobotTest {
     Given 可用柜子为18个, When 使用已被使用ticket取包, Then 无包取出
     Given 可用柜子为18个, When 使用1个非法ticket取包, Then 无包取出
      */
+    //Given 可用柜子为19个, When 存放1个包, Then 收到1个取包ticket，可用柜为18个
     @Test
     void should_return_1_ticket_and_18_available_when_deposit_1_given_19_available () {
         LockerRobot robot = new LockerRobot();
@@ -23,6 +24,7 @@ public class LockerRobotTest {
         assertEquals(18, size);
     }
 
+    //Given 可用柜子为19个, When 依次存放2个包, Then 收到2个不同的取包ticket，可用柜为17个
     @Test
     void should_2_ticket_and_17_available_when_deposit_2_given_19_available () {
         LockerRobot robot = new LockerRobot();
@@ -35,14 +37,16 @@ public class LockerRobotTest {
         assertEquals(17, size);
     }
 
+    //Given 可用柜子为0个, When 存放1个包, Then 无法存包
     @Test
     void should_deposit_fail_when_deposit_1_given_0_available () {
         LockerRobot robot = new LockerRobot();
-        for (int i = 0; i < 19; i++) {
+        int count = robot.getAvailableCount();
+        for (int i = 0; i < count; i++) {
             robot.deposit();
         }
         assertEquals(robot.getAvailableCount(), 0);
-//
+
         Ticket ticket = robot.deposit();
         assertNull(ticket);
     }
