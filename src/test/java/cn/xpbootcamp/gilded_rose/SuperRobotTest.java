@@ -22,8 +22,8 @@ public class SuperRobotTest {
     @Test
     void should_deposit_the_first_locker_and_get_1_ticket_given_robot_manage_2_lockers_and_vacancy_rate_is_percent_100_and_percent_100_when_robot_deposit_1_bag() {
         List<Locker> lockers = new ArrayList<>();
-        lockers.add(new Locker(2));
-        lockers.add(new Locker(2));
+        lockers.add(new Locker(1));
+        lockers.add(new Locker(1));
         Robot robot = new Robot(lockers);
 
         Ticket ticket = robot.deposit(new Bag());
