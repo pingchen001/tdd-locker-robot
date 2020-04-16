@@ -20,27 +20,31 @@ public class SuperRobotTest {
     }
 
     @Test
-    void should_deposit_the_first_locker_and_get_1_ticket_given_robot_manage_2_lockers_and_vacancy_rate_is_percent_100_and_percent_100_when_robot_deposit_1_bag() {
+    void should_deposit_the_first_locker_and_get_1_ticket_given_robot_manage_2_lockers_and_available_rate_is_percent_100_and_percent_100_when_robot_deposit_1_bag() {
         List<Locker> lockers = new ArrayList<>();
         lockers.add(new Locker(1));
         lockers.add(new Locker(1));
         Robot robot = new Robot(lockers);
 
-        Ticket ticket = robot.deposit(new Bag());
-        assertEquals(1,1);
+        Bag bag = new Bag();
+        Ticket ticket = robot.deposit(bag);
         assertNotNull(ticket);
+
+        assertTrue(lockers.get(0).containsBag(bag));
     }
 
     @Test
-    void should_deposit_the_second_locker_and_get_1_ticket_given_robot_manage_2_lockers_and_vacancy_rate_is_percent_50_and_percent_100_when_robot_deposit_1_bag() {
+    void should_deposit_the_second_locker_and_get_1_ticket_given_robot_manage_2_lockers_and_available_rate_is_percent_50_and_percent_100_when_robot_deposit_1_bag() {
         List<Locker> lockers = new ArrayList<>();
         lockers.add(new Locker(2));
         lockers.add(new Locker(2));
-        Robot robot = new Robot(lockers);
-        robot.deposit(new Bag());
+        lockers.get(0).deposit(new Bag());
 
-        Ticket ticket = robot.deposit(new Bag());
-        assertEquals(2,2);
+        Robot robot = new Robot(lockers);
+        Bag bag = new Bag();
+        Ticket ticket = robot.deposit(bag);
+
+        assertTrue(lockers.get(1).containsBag(bag));
         assertNotNull(ticket);
     }
 

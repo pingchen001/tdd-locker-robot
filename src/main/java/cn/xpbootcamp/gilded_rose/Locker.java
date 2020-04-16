@@ -32,4 +32,15 @@ public class Locker {
     public int availableCount() {
         return _capacity - storedBags.size();
     }
+
+    public float availableRate() {
+        if (_capacity == 0) {
+            return 0.f;
+        }
+        return availableCount() / _capacity;
+    }
+
+    public boolean containsBag(Bag bag) {
+        return storedBags.containsValue(bag);
+    }
 }

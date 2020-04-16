@@ -12,12 +12,12 @@ public class Robot {
 
     public Ticket deposit(Bag bag) {
         Locker max_locker = null;
-        int max_available_count = 0;
+        float max_available_rate = 0.0f;
 
         for (Locker locker : _lockers) {
-            int available_count = locker.availableCount();
-            if (available_count > max_available_count) {
-                max_available_count = available_count;
+            float availableRate = locker.availableRate();
+            if (availableRate > max_available_rate) {
+                max_available_rate = availableRate;
                 max_locker = locker;
             }
         }
